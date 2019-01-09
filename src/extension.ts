@@ -2,7 +2,9 @@
 
 import * as vscode from 'vscode';
 
-import { CommandChangeCase } from './commands/cmd-change-case';
+import { ChangeCase } from './commands/change-case.command';
+import { CommonTransform } from './commands/common-transform.command';
+import { StringService } from './commands/string-service.command';
 import { installCommand } from './util/vscode-util';
 
 /**
@@ -10,11 +12,9 @@ import { installCommand } from './util/vscode-util';
  * @param context extension context
  */
 export function activate(context: vscode.ExtensionContext) {
-  installCommand(context, 'extension.changeCase',
-    () => {
-      new CommandChangeCase().exec();
-    },
-  );
+  installCommand(context, 'extension.changeCase', () => { new ChangeCase().exec(); });
+  installCommand(context, 'extension.stringTransform', () => { new CommonTransform().exec(); });
+  installCommand(context, 'extension.stringService', () => { new StringService().exec(); });
 }
 
 /**

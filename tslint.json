@@ -15,7 +15,8 @@
 		"semicolon": [
 			true,
 			"always"
-		]
+		],
+		"max-line-length": false
 	},
 	"defaultSeverity": "warning"
 }

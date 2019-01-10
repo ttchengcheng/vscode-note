@@ -4,6 +4,7 @@
     "description": "",
     "version": "0.0.1",
     "publisher": "ttchengcheng",
+    "license": "MIT",
     "engines": {
         "vscode": "^1.30.0"
     },

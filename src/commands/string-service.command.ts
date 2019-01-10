@@ -36,11 +36,14 @@ class StringService {
       const editor = vscode.window.activeTextEditor;
       if (editor && editor.document) {
         if (editor.selection.isEmpty) {
-          const line = editor.document.getText(editor.document.lineAt(editor.selection.start).range);
-          const regex = new RegExp(/\bfrom\s+\'(.+)\';?$/);
-          const result = regex.exec(line.replace('"', '\'').replace('require', 'import'));
+          const line = editor.document.getText(editor.document.lineAt(editor.selection.start).range)
+            .replace('"', '\'');
+          let result = new RegExp(/\bfrom\s+\'(.+)\'\s*;?$/).exec(line);
           if (result) {
             names.push(result[1]);
+          } else {
+            result = new RegExp(/\brequire\s*\(\s*\'(.+)\'\s*\)\s*;?$/).exec(line);
+            if (result) { names.push(result[1]); }
           }
         } else {
           names.push(editor.document.getText(editor.selection));
@@ -51,7 +54,7 @@ class StringService {
 
     const functions: Array<{ label: string, fn: (s: string) => void, fnGetText: () => string[] }> = [
       { label: 'introduction', fn: (s: string) => { openUrl(`https://www.npmjs.com/package/${s}`); }, fnGetText: getPackageName },
-      { label: 'dependencies', fn: (s: string) => { openUrl(`http://npm.anvaka.com/#/view/2d/${s}`); }, fnGetText: getPackageName },
+      { label: 'dependencies', fn: (s: string) => { openUrl(`https://npm.anvaka.com/#/view/2d/${s}`); }, fnGetText: getPackageName },
       { label: 'size', fn: (s: string) => { openUrl(`https://bundlephobia.com/result?p=${s}`); }, fnGetText: getPackageName },
     ];
     return functions;

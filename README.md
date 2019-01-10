@@ -1,20 +1,57 @@
-# note README
+# Note
 
-This is the README for your extension "note". After writing up a brief description, we recommend including the following sections.
+Note is a tiny VSCode extension
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+* change case
 
-For example if there is an image subfolder under your extension project workspace:
+  change case of selected text in current editor
 
-\!\[feature X\]\(images/feature-x.png\)
+  shortcuts: `ctrl`+`shift`+`F1` on Windows / `cmd`+`shift`+`F1` on macOS
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+  | style | before | after |
+  |---|---|---|
+  | PascalCase | Variable-Name | VariableName |
+  | lisp-case | Variable-Name | variable-name |
+  | COBOL-CASE | Variable-Name | VARIABLE_NAME |
+  | snake_case | Variable-Name | variable_name |
+  | path/case | Variable-Name | variable/name |
+  | dot.case | Variable-Name | variable.name |
+  | PascalCase | Variable-Name | VariableName |
+
+* string transformation
+
+  transform selected text in current editor
+
+  shortcuts: `ctrl`+`shift`+`F2` on Windows / `cmd`+`shift`+`F2` on macOS
+
+  | style | before | after |
+  |---|---|---|
+  | Upper | Some String | SOME STRING |
+  | lower | Some String | some string |
+  | escape | /Some String | %2FSome%20String |
+  | unescape | %2FSome%20String | /Some String |
+  | escapeURI | /Some String | /Some%20String |
+  | unescapeURI | /Some%20String | /Some String |
+  | en-base64 | Some String | U29tZSBTdHJpbmc= |
+  | de-base64 | U29tZSBTdHJpbmc= | Some String |
+
+* npm package service
+
+  shortcuts: `ctrl`+`shift`+`F8` on Windows / `cmd`+`shift`+`F8` on macOS
+
+  | serivce |   |
+  |---|---|
+  | introduction | show package introduction page on `https://www.npmjs.com` |
+  | dependencies | show package dependency tree on `https://npm.anvaka.com` |
+  | size | show size of package on `https://bundlephobia.com` |
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+This extension has only tested on VSCode 1.30.0+
+
+<!--
 
 ## Extension Settings
 
@@ -30,36 +67,14 @@ This extension contributes the following settings:
 ## Known Issues
 
 Calling out known issues can help limit users opening duplicate issues against your extension.
+-->
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
+Basic functions
 
-Initial release of ...
+## License
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+MIT

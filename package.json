@@ -35,20 +35,20 @@
         "keybindings": [
             {
                 "command": "extension.changeCase",
-                "key": "ctrl+f1",
-                "mac": "cmd+f1",
+                "key": "ctrl+shift+f1",
+                "mac": "cmd+shift+f1",
                 "when": "editorTextFocus"
             },
             {
                 "command": "extension.stringTransform",
-                "key": "ctrl+f2",
-                "mac": "cmd+f2",
+                "key": "ctrl+shift+f2",
+                "mac": "cmd+shift+f2",
                 "when": "editorTextFocus"
             },
             {
                 "command": "extension.stringService",
-                "key": "ctrl+f3",
-                "mac": "cmd+f3",
+                "key": "ctrl+shift+f8",
+                "mac": "cmd+shift+f8",
                 "when": "editorTextFocus"
             }
         ]

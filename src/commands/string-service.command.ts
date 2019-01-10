@@ -1,5 +1,5 @@
-import * as opn from 'opn';
 import * as vscode from 'vscode';
+import { openUrl } from '../util/vscode-util';
 
 export { StringService };
 
@@ -36,13 +36,9 @@ class StringService {
       const editor = vscode.window.activeTextEditor;
       if (editor && editor.document) {
         if (editor.selection.isEmpty) {
-          const posStart = editor.selection.start;
-          const line = editor.document.getText(new vscode.Range(
-            posStart,
-            new vscode.Position(posStart.line, -1),
-          ));
-          const regex = /\b[require|import]\s+[\'|\"](.+)[\'|\"]^/;
-          const result = regex.exec(line);
+          const line = editor.document.getText(editor.document.lineAt(editor.selection.start).range);
+          const regex = new RegExp(/\bfrom\s+\'(.+)\';?$/);
+          const result = regex.exec(line.replace('"', '\'').replace('require', 'import'));
           if (result) {
             names.push(result[1]);
           }
@@ -54,9 +50,9 @@ class StringService {
     };
 
     const functions: Array<{ label: string, fn: (s: string) => void, fnGetText: () => string[] }> = [
-      { label: 'npm website', fn: (s: string) => { opn(`https://www.npmjs.com/package/${s}`); }, fnGetText: getPackageName },
-      { label: 'dependency tree', fn: (s: string) => { opn(`http://npm.anvaka.com/#/view/2d/${s}`); }, fnGetText: getPackageName },
-      { label: 'size detail', fn: (s: string) => { opn(`https://bundlephobia.com/result?p=${s}`); }, fnGetText: getPackageName },
+      { label: 'introduction', fn: (s: string) => { openUrl(`https://www.npmjs.com/package/${s}`); }, fnGetText: getPackageName },
+      { label: 'dependencies', fn: (s: string) => { openUrl(`http://npm.anvaka.com/#/view/2d/${s}`); }, fnGetText: getPackageName },
+      { label: 'size', fn: (s: string) => { openUrl(`https://bundlephobia.com/result?p=${s}`); }, fnGetText: getPackageName },
     ];
     return functions;
   }

@@ -52,7 +52,6 @@ Note is a tiny VSCode extension
 This extension has only tested on VSCode 1.30.0+
 
 <!--
-
 ## Extension Settings
 
 Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.

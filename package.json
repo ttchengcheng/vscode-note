@@ -5,6 +5,7 @@
     "version": "0.0.1",
     "publisher": "ttchengcheng",
     "license": "MIT",
+    "repository": "https://github.com/ttchengcheng/vscode-note.git",
     "engines": {
         "vscode": "^1.30.0"
     },

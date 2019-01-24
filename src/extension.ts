@@ -13,10 +13,10 @@ import { installCommand } from './util/vscode-util';
  * @param context extension context
  */
 export function activate(context: vscode.ExtensionContext) {
-  installCommand(context, 'extension.changeCase', () => { new ChangeCase().exec(); });
-  installCommand(context, 'extension.stringTransform', () => { new CommonTransform().exec(); });
-  installCommand(context, 'extension.stringService', () => { new StringService().exec(); });
-  installCommand(context, 'extension.stringWrap', () => { new WrapTransform().exec(); });
+  installCommand(context, 'extension.changeCase', ChangeCase);
+  installCommand(context, 'extension.stringTransform', CommonTransform);
+  installCommand(context, 'extension.stringService', StringService);
+  installCommand(context, 'extension.stringWrap', WrapTransform);
 }
 
 /**

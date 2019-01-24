@@ -1,12 +1,18 @@
 import * as vscode from 'vscode';
 
-export { installCommand, openUrl };
+export { openUrl, installCommand };
 
-function installCommand(
+interface ExecutableCommand {
+  exec(): void;
+}
+
+function installCommand<T extends ExecutableCommand>(
   context: vscode.ExtensionContext,
   command: string,
-  callback: (...args: any[]) => any, thisArg?: any) {
-  const disposable = vscode.commands.registerCommand(command, callback, thisArg);
+  constructor: new () => T) {
+  const disposable = vscode.commands.registerCommand(command, () => {
+    new constructor().exec();
+  });
   context.subscriptions.push(disposable);
 }
 

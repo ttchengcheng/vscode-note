@@ -12,13 +12,13 @@ Note is a tiny VSCode extension
 
 | style | before | after |
 |---|---|---|
-| PascalCase | Variable-Name | VariableName |
-| lisp-case | Variable-Name | variable-name |
-| COBOL-CASE | Variable-Name | VARIABLE_NAME |
-| snake_case | Variable-Name | variable_name |
-| path/case | Variable-Name | variable/name |
-| dot.case | Variable-Name | variable.name |
-| PascalCase | Variable-Name | VariableName |
+| PascalCase | `Variable-Name` | `VariableName` |
+| lisp-case | `Variable-Name` | `variable-name` |
+| COBOL-CASE | `Variable-Name` | `VARIABLE_NAME` |
+| snake_case | `Variable-Name` | `variable_name` |
+| path/case | `Variable-Name` | `variable/name` |
+| dot.case | `Variable-Name` | `variable.name` |
+| PascalCase | `Variable-Name` | `VariableName` |
 
 * string transformation
 
@@ -28,14 +28,14 @@ Note is a tiny VSCode extension
 
 | style | before | after |
 |---|---|---|
-| Upper | Some String | SOME STRING |
-| lower | Some String | some string |
-| escape | /Some String | %2FSome%20String |
-| unescape | %2FSome%20String | /Some String |
-| escapeURI | /Some String | /Some%20String |
-| unescapeURI | /Some%20String | /Some String |
-| en-base64 | Some String | U29tZSBTdHJpbmc= |
-| de-base64 | U29tZSBTdHJpbmc= | Some String |
+| Upper | `Some String` | `SOME STRING` |
+| lower | `Some String` | `some string` |
+| escape | `/Some String` | `%2FSome%20String` |
+| unescape | `%2FSome%20String` | `/Some String` |
+| escapeURI | `/Some String` | `/Some%20String` |
+| unescapeURI | `/Some%20String` | `/Some String` |
+| en-base64 | `Some String` | `U29tZSBTdHJpbmc=` |
+| de-base64 | `U29tZSBTdHJpbmc=` | `Some String` |
 
 * npm package service
 
@@ -46,6 +46,40 @@ Note is a tiny VSCode extension
 | introduction | show package introduction page on `https://www.npmjs.com` |
 | dependencies | show package dependency tree on `https://npm.anvaka.com` |
 | size | show size of package on `https://bundlephobia.com` |
+
+* string wrap
+
+  * region
+
+    select the current lines
+
+    ```js
+    function foo() {...}
+    function foo1() {...}
+    function foo2() {...}
+    ```
+  
+    then use this function, the above is changed to
+
+    ```js
+    // #region
+    function foo() {...}
+    function foo1() {...}
+    function foo2() {...}
+    // #endregion
+    ```
+
+  * code block
+
+    select the current lines
+
+    ```js
+    function foo() {...}
+    function foo1() {...}
+    function foo2() {...}
+    ```
+  
+    then use this function, the above wrapped in ``` block of Markdown
 
 ## Requirements
 
@@ -69,6 +103,10 @@ Calling out known issues can help limit users opening duplicate issues against y
 -->
 
 ## Release Notes
+
+### 0.0.2
+
+add wrap functions
 
 ### 0.0.1
 

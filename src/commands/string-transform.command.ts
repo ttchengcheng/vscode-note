@@ -22,16 +22,22 @@ abstract class StringTransform {
 
         const updates: Array<[vscode.Range, string]> = [];
         editor.selections.map((sel) => {
-          let t = doc.getText(sel);
+          const t = doc.getText(sel);
           if (!t) { return; }
 
           const fnItem = functions.find(({ label }) => (label === selectedItem.label));
           if (fnItem && fnItem.fn) { updates.push([sel, fnItem.fn(t)]); }
         });
-        editor.edit((builder) => {
-          updates.map(([sel, t]) => builder.replace(sel, t));
-        });
+        this.update(updates);
       });
+  }
+  protected update(updates: Array<[vscode.Range, string]>): void {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) { return; }
+
+    editor.edit((builder) => {
+      updates.map(([sel, t]) => builder.replace(sel, t));
+    });
   }
   protected abstract functionMap(): Array<{ label: string, fn: (s: string) => string }>;
 }

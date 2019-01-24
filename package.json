@@ -15,7 +15,8 @@
     "activationEvents": [
         "onCommand:extension.changeCase",
         "onCommand:extension.stringTransform",
-        "onCommand:extension.stringService"
+        "onCommand:extension.stringService",
+        "onCommand:extension.stringWrap"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -31,6 +32,10 @@
             {
                 "command": "extension.stringTransform",
                 "title": "Transform Selection"
+            },
+            {
+                "command": "extension.stringWrap",
+                "title": "Surround Selection"
             }
         ],
         "keybindings": [
@@ -50,6 +55,12 @@
                 "command": "extension.stringService",
                 "key": "ctrl+shift+f8",
                 "mac": "cmd+shift+f8",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "extension.stringWrap",
+                "key": "ctrl+shift+f9",
+                "mac": "cmd+shift+f9",
                 "when": "editorTextFocus"
             }
         ]

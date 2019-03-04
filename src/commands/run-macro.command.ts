@@ -13,11 +13,11 @@ class RunMacro {
     if (!doc) { return; }
 
     const functions = this.functions();
+
     // show a drop-down list
     const items: vscode.QuickPickItem[] = functions.map(({ label }) => {
       return { label };
     });
-
     vscode.window.showQuickPick(items)
       .then((selectedItem) => {
         if (!selectedItem) { return; }

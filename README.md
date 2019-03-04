@@ -46,6 +46,7 @@ shortcuts: `ctrl`+`shift`+`F8` on Windows / `cmd`+`shift`+`F8` on macOS
 | introduction | show package introduction page on `https://www.npmjs.com` |
 | dependencies | show package dependency tree on `https://npm.anvaka.com` |
 | size | show size of package on `https://bundlephobia.com` |
+| translate | show translating on `https://https://translate.google.cn` |
 
 ### macros
 
@@ -90,6 +91,10 @@ Calling out known issues can help limit users opening duplicate issues against y
 -->
 
 ## Release Notes
+
+### 0.0.4
+
+* add google translation service
 
 ### 0.0.3
 

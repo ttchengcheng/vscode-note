@@ -1,13 +1,13 @@
 import * as vscode from 'vscode';
 
-export { EditUpdate, StringTransform };
+export { TransformUpdate, StringTransform };
 
-interface EditUpdate {
+interface TransformUpdate {
   range: vscode.Range;
-  newText: string;
+  transformedText: string;
 }
 abstract class StringTransform {
-  public exec() {
+  public async exec() {
     const editor = vscode.window.activeTextEditor;
     if (!editor) { return; }
 
@@ -15,32 +15,33 @@ abstract class StringTransform {
     if (!doc) { return; }
 
     const functions = this.functionMap();
+
     // show a drop-down list
     const items: vscode.QuickPickItem[] = functions.map(({ label }) => {
       return { label };
     });
+    const selectedItem = await vscode.window.showQuickPick(items);
+    if (!selectedItem) { return; }
 
-    vscode.window.showQuickPick(items)
-      .then((selectedItem) => {
-        if (!selectedItem) { return; }
+    // transform every range of selected text
+    // 1. collect all updates
+    const updates: TransformUpdate[] = [];
+    editor.selections.map((sel) => {
+      const text = doc.getText(sel);
+      if (!text) { return; }
 
-        const updates: EditUpdate[] = [];
-        editor.selections.map((sel) => {
-          const t = doc.getText(sel);
-          if (!t) { return; }
-
-          const fnItem = functions.find(({ label }) => (label === selectedItem.label));
-          if (fnItem && fnItem.fn) { updates.push({ range: sel, newText: fnItem.fn(t) }); }
-        });
-        this.update(updates);
-      });
+      const fnItem = functions.find(({ label }) => (label === selectedItem.label));
+      if (fnItem && fnItem.fn) { updates.push({ range: sel, transformedText: fnItem.fn(text) }); }
+    });
+    // 2. update all at once
+    this.update(updates);
   }
-  protected update(updates: EditUpdate[]): void {
+  protected update(updates: TransformUpdate[]): void {
     const editor = vscode.window.activeTextEditor;
     if (!editor) { return; }
 
     editor.edit((builder) => {
-      updates.map(({ range: sel, newText: t }) => builder.replace(sel, t));
+      updates.map(({ range: sel, transformedText: t }) => builder.replace(sel, t));
     });
   }
   protected abstract functionMap(): Array<{ label: string, fn: (s: string) => string }>;

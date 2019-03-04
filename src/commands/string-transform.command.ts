@@ -1,7 +1,11 @@
 import * as vscode from 'vscode';
 
-export { StringTransform };
+export { EditUpdate, StringTransform };
 
+interface EditUpdate {
+  range: vscode.Range;
+  newText: string;
+}
 abstract class StringTransform {
   public exec() {
     const editor = vscode.window.activeTextEditor;
@@ -20,23 +24,23 @@ abstract class StringTransform {
       .then((selectedItem) => {
         if (!selectedItem) { return; }
 
-        const updates: Array<[vscode.Range, string]> = [];
+        const updates: EditUpdate[] = [];
         editor.selections.map((sel) => {
           const t = doc.getText(sel);
           if (!t) { return; }
 
           const fnItem = functions.find(({ label }) => (label === selectedItem.label));
-          if (fnItem && fnItem.fn) { updates.push([sel, fnItem.fn(t)]); }
+          if (fnItem && fnItem.fn) { updates.push({ range: sel, newText: fnItem.fn(t) }); }
         });
         this.update(updates);
       });
   }
-  protected update(updates: Array<[vscode.Range, string]>): void {
+  protected update(updates: EditUpdate[]): void {
     const editor = vscode.window.activeTextEditor;
     if (!editor) { return; }
 
     editor.edit((builder) => {
-      updates.map(([sel, t]) => builder.replace(sel, t));
+      updates.map(({ range: sel, newText: t }) => builder.replace(sel, t));
     });
   }
   protected abstract functionMap(): Array<{ label: string, fn: (s: string) => string }>;

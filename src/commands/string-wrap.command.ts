@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { StringTransform } from './string-transform.command';
+import { EditUpdate, StringTransform } from './string-transform.command';
 
 export { WrapTransform };
 
@@ -27,12 +27,12 @@ class WrapTransform extends StringTransform {
     return functions;
   }
 
-  protected update(updates: Array<[vscode.Range, string]>): void {
+  protected update(updates: EditUpdate[]): void {
     const editor = vscode.window.activeTextEditor;
     if (!editor) { return; }
 
     if (updates.length !== 1) { return; }
 
-    editor.insertSnippet(new vscode.SnippetString(updates[0][1]));
+    editor.insertSnippet(new vscode.SnippetString(updates[0].newText));
   }
 }

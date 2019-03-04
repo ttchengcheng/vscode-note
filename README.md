@@ -4,11 +4,11 @@ Note is a tiny VSCode extension
 
 ## Features
 
-* change case
+### change case
 
-  change case of selected text in current editor
+change case of selected text in current editor
 
-  shortcuts: `ctrl`+`shift`+`F1` on Windows / `cmd`+`shift`+`F1` on macOS
+shortcuts: `ctrl`+`shift`+`F1` on Windows / `cmd`+`shift`+`F1` on macOS
 
 | style | before | after |
 |---|---|---|
@@ -20,11 +20,11 @@ Note is a tiny VSCode extension
 | dot.case | `Variable-Name` | `variable.name` |
 | PascalCase | `Variable-Name` | `VariableName` |
 
-* string transformation
+### string transformation
 
-  transform selected text in current editor
+transform selected text in current editor
 
-  shortcuts: `ctrl`+`shift`+`F2` on Windows / `cmd`+`shift`+`F2` on macOS
+shortcuts: `ctrl`+`shift`+`F2` on Windows / `cmd`+`shift`+`F2` on macOS
 
 | style | before | after |
 |---|---|---|
@@ -37,9 +37,9 @@ Note is a tiny VSCode extension
 | en-base64 | `Some String` | `U29tZSBTdHJpbmc=` |
 | de-base64 | `U29tZSBTdHJpbmc=` | `Some String` |
 
-* npm package service
+### npm package service
 
-  shortcuts: `ctrl`+`shift`+`F8` on Windows / `cmd`+`shift`+`F8` on macOS
+shortcuts: `ctrl`+`shift`+`F8` on Windows / `cmd`+`shift`+`F8` on macOS
 
 | serivce |   |
 |---|---|
@@ -47,39 +47,26 @@ Note is a tiny VSCode extension
 | dependencies | show package dependency tree on `https://npm.anvaka.com` |
 | size | show size of package on `https://bundlephobia.com` |
 
-* string wrap
+### macros
 
-  * region
+inspired by [geddski/macros](https://github.com/geddski/macros)
 
-    select the current lines
+Preferences > User Settings > Edit in `setting.json`:
 
-    ```js
-    function foo() {...}
-    function foo1() {...}
-    function foo2() {...}
-    ```
-  
-    then use this function, the above is changed to
+```json
+"note.macros": {
+    "commentDown": [ // name of the macro
+        "editor.action.addCommentLine", // example of command without arguments (1)
+        "cursorDown" // another example of command without arguments (1)
+        {"command": "type", "args": {"text": "abc"}} // example of command with arguments (2)
+        "+abc" // shortcut of typing some text, same as above, start with '+' (3)
+    ]
+}
+```
 
-    ```js
-    // #region
-    function foo() {...}
-    function foo1() {...}
-    function foo2() {...}
-    // #endregion
-    ```
+shortcuts: `ctrl`+`shift`+`F9` on Windows / `cmd`+`shift`+`F9` on macOS
 
-  * code block
-
-    select the current lines
-
-    ```js
-    function foo() {...}
-    function foo1() {...}
-    function foo2() {...}
-    ```
-  
-    then use this function, the above wrapped in ``` block of Markdown
+Use the command "Run Macro" with the command palette or shortcuts, then select a macro set in your `setting.json`
 
 ## Requirements
 
@@ -104,13 +91,18 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ## Release Notes
 
+### 0.0.3
+
+* add support for macros
+* remove wrap functions (same functions can be achieved by user snippets)
+
 ### 0.0.2
 
-add wrap functions
+* add wrap functions
 
 ### 0.0.1
 
-Basic functions
+* Basic functions
 
 ## License
 

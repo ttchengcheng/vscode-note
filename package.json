@@ -2,7 +2,7 @@
     "name": "vscode-note",
     "displayName": "note",
     "description": "",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "ttchengcheng",
     "license": "MIT",
     "repository": "https://github.com/ttchengcheng/vscode-note.git",
@@ -16,26 +16,26 @@
         "onCommand:extension.changeCase",
         "onCommand:extension.stringTransform",
         "onCommand:extension.stringService",
-        "onCommand:extension.stringWrap"
+        "onCommand:extension.runMacro"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
                 "command": "extension.changeCase",
-                "title": "Change Selection Cases"
+                "title": "Note: Change Selection Cases"
             },
             {
                 "command": "extension.stringService",
-                "title": "Service based on Selection"
+                "title": "Note: Service based on Selection"
             },
             {
                 "command": "extension.stringTransform",
-                "title": "Transform Selection"
+                "title": "Note: Transform Selection"
             },
             {
-                "command": "extension.stringWrap",
-                "title": "Surround Selection"
+                "command": "extension.runMacro",
+                "title": "Note: Run Macro"
             }
         ],
         "keybindings": [
@@ -58,12 +58,19 @@
                 "when": "editorTextFocus"
             },
             {
-                "command": "extension.stringWrap",
+                "command": "extension.runMacro",
                 "key": "ctrl+shift+f9",
                 "mac": "cmd+shift+f9",
                 "when": "editorTextFocus"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Note: Macros",
+            "properties": {
+                "note.macros": {}
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",

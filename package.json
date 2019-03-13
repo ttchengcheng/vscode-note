@@ -2,7 +2,7 @@
     "name": "vscode-note",
     "displayName": "note",
     "description": "",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "publisher": "ttchengcheng",
     "license": "MIT",
     "repository": "https://github.com/ttchengcheng/vscode-note.git",
@@ -73,9 +73,9 @@
         }
     },
     "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
+        "vscode:prepublish": "webpack --mode production",
+        "compile": "webpack --mode none",
+        "watch": "webpack --mode none --watch",
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
@@ -83,10 +83,13 @@
         "@types/js-base64": "^2.3.1",
         "@types/mocha": "^2.2.42",
         "@types/node": "^8.10.25",
+        "ts-loader": "^5.3.3",
         "tslint": "^5.8.0",
         "typescript": "^2.6.1",
-        "vsce": "^1.54.0",
-        "vscode": "^1.1.21"
+        "vsce": "^1.58.0",
+        "vscode": "^1.1.21",
+        "webpack": "^4.29.6",
+        "webpack-cli": "^3.2.3"
     },
     "dependencies": {
         "change-case": "^3.0.2",

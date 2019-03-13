@@ -22,7 +22,7 @@ class RunMacro {
       .then((selectedItem) => {
         if (!selectedItem) { return; }
 
-        editor.selections.map((sel) => {
+        editor.selections.map(() => {
           const fnItem = functions.find(({ label }) => (label === selectedItem.label));
           if (fnItem && fnItem.fn) { fnItem.fn(); }
         });

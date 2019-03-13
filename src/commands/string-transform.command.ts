@@ -26,7 +26,7 @@ abstract class StringTransform {
     // transform every range of selected text
     // 1. collect all updates
     const updates: TransformUpdate[] = [];
-    editor.selections.map((sel) => {
+    editor.selections.map((sel: vscode.Selection) => {
       const text = doc.getText(sel);
       if (!text) { return; }
 
@@ -40,7 +40,7 @@ abstract class StringTransform {
     const editor = vscode.window.activeTextEditor;
     if (!editor) { return; }
 
-    editor.edit((builder) => {
+    editor.edit((builder: vscode.TextEditorEdit) => {
       updates.map(({ range: sel, transformedText: t }) => builder.replace(sel, t));
     });
   }

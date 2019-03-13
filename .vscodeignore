@@ -1,5 +1,6 @@
 .vscode/**
 .vscode-test/**
+node_modules
 out/test/**
 out/**/*.map
 src/**
@@ -7,3 +8,5 @@ src/**
 tsconfig.json
 vsc-extension-quickstart.md
 tslint.json
+webpack.config.json
+vsix

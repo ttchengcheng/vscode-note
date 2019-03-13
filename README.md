@@ -92,6 +92,10 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ## Release Notes
 
+### 0.0.5
+
+* bundling with webpack
+
 ### 0.0.4
 
 * add google translation service

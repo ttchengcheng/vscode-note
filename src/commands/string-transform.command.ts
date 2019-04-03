@@ -28,8 +28,6 @@ abstract class StringTransform {
     const updates: TransformUpdate[] = [];
     editor.selections.map((sel: vscode.Selection) => {
       const text = doc.getText(sel);
-      if (!text) { return; }
-
       const fnItem = functions.find(({ label }) => (label === selectedItem.label));
       if (fnItem && fnItem.fn) { updates.push({ range: sel, transformedText: fnItem.fn(text) }); }
     });

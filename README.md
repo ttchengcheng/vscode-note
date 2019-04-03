@@ -69,6 +69,12 @@ shortcuts: `ctrl`+`shift`+`F9` on Windows / `cmd`+`shift`+`F9` on macOS
 
 Use the command "Run Macro" with the command palette or shortcuts, then select a macro set in your `setting.json`
 
+### insert entities
+
+| serivce |   |
+|---|---|
+| Date | insert date, default format is `YY/MM/DD` |
+
 ## Requirements
 
 This extension has only tested on VSCode 1.30.0+
@@ -91,6 +97,10 @@ Calling out known issues can help limit users opening duplicate issues against y
 -->
 
 ## Release Notes
+
+### 0.0.6
+
+* add command to insert entity
 
 ### 0.0.5
 

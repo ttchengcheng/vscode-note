@@ -5,6 +5,10 @@ All notable changes to the "note" extension will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 -->
 
+## 0.0.6
+
+* add command to insert entity
+
 ## 0.0.5
 
 * bundling with webpack
